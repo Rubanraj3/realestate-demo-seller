@@ -1,0 +1,147 @@
+<span class="bar"></span>
+<div class="main">
+  <div class="top-section">
+    <div class="back" style="cursor: pointer !important">
+      <!-- <svg
+        width="15"
+        height="25"
+        viewBox="0 0 20 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7.27179 16.1559L20 28.0722L16.3641 31.4762L0 16.1559L16.3641 0.835693L20 4.23965L7.27179 16.1559Z"
+          fill="#473B32"
+          fill-opacity="0.6"
+        />
+      </svg> -->
+      <p>{{data.category}} > {{data.postType}}</p>
+      <!-- <p>
+          {{ data.BHKType }} House For {{ data.Type }} in,
+          {{ data.formatedAddress }}
+        </p> -->
+    </div>
+  </div>
+  <div class="details-box">
+    <div class="details-container">
+      <div class="slides">
+        <div
+          id="carouselExampleAutoplaying"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let v of data.imageArr " style="
+                      background-image: url('../../../assets/images/Frame\ 2072.png');" 
+                      [class.active]="v == v" >
+                        <img [src]="v" class="d-block " alt="...">
+                      </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <td class="line-1">
+            <span
+              ><h5>Stream Name</h5>
+              <p>06.30pm</p></span
+            >
+            <span class="bttns">
+              <button *ngIf="false">Live</button>
+              <div style="position: relative;">
+                <button
+                (click)="popup = !popup"
+                *ngIf="data.status == 'Pending'"
+                for="select1"
+                class="select-btn"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H1C0.734784 20 0.48043 19.8946 0.292893 19.7071C0.105357 19.5196 0 19.2652 0 19V3C0 2.73478 0.105357 2.48043 0.292893 2.29289C0.48043 2.10536 0.734784 2 1 2H5V0H7V2H13V0H15V2ZM13 4H7V6H5V4H2V8H18V4H15V6H13V4ZM18 10H2V18H18V10ZM4 13H6V15H4V13ZM8 13H16V15H8V13Z"
+                    fill="white"
+                  />
+                </svg>
+                Select
+              </button>
+              </div>
+              <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
+                <input
+                  style="width: 100%"
+                  (change)="showDate(date)"
+                  #date
+                  type="datetime-local"
+                />
+              </span>
+             
+            </span>
+          
+            <!-- && data.status == 'Pending' -->
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h5>Rent Expectation</h5>
+            <p>{{data.priceExp}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <h5>Address</h5>
+            <p>{{ data.location }}{{ data.Description }}</p>
+          </td>
+        </tr>
+        <tr class="line-3">
+          <td>
+            <p>Property type</p>
+            <h5>{{ data.propertyType }}</h5>
+          </td>
+          <td>
+            <p>Bhk / Building Type</p>
+            <h5>{{ data.bhkBuilding }}</h5>
+          </td>
+        </tr>
+        <tr class="line-3">
+          <td>
+            <p>Furnishing status</p>
+            <h5>{{ data.furnitionStatus }}</h5>
+          </td>
+          <td>
+            <p>Tenat Type</p>
+            <h5>{{data.tenantType}}</h5>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" style="align-items: baseline;
+          padding: 10px;">
+            <h5>Description</h5>
+            <p>{{ data.Description }}</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
