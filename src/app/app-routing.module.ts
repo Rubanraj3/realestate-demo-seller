@@ -4,9 +4,10 @@ import { PropertyViewComponent } from './property-view/property-view.component';
 import { RegUserComponent } from './reg-user/reg-user.component';
 
 const routes: Routes = [
-  {path:'stream/:id',component:RegUserComponent},
-  {path:'property/:id',component:PropertyViewComponent},
- 
+  { path: 'stream/:id', component: RegUserComponent },
+  { path: 'property', component: PropertyViewComponent },
+  { path: "live", loadChildren: () => import('./managelivestream/managelivestream.module').then((m) => m.ManagelivestreamModule), },
+
 
 ];
 

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { SellerServiceService } from 'src/app/seller-service.service';
 
 @Component({
@@ -7,32 +8,35 @@ import { SellerServiceService } from 'src/app/seller-service.service';
   templateUrl: './property-view-web.component.html',
   styleUrls: ['./property-view-web.component.css']
 })
-export class PropertyViewWebComponent implements OnInit {
+export class PropertyViewWebComponent implements OnInit, OnDestroy {
+  coundonw: any;
+  now_time: any = new Date().getTime();
   ngOnInit(): void {
-    this.arouter.params.subscribe((params) => {
-      this.id = params['id'];
-    });
+    this.id = localStorage.getItem('id')
     this.getDetails(this.id);
+    this.coundonw = timer(0, 1000).subscribe((res: any) => {
+      this.now_time = new Date().getTime();
+    })
   }
   constructor(
     private arouter: ActivatedRoute,
     private service: SellerServiceService,
     private router: Router
-  ) {}
+  ) { }
   id: any;
-  data:any= []
-  popup:boolean=false
-  showDate(show:HTMLInputElement){
+  data: any = []
+  popup: boolean = false
+  showDate(show: HTMLInputElement) {
     console.log(show.value)
-    let v  = show.value
+    let v = show.value
     let verifyId = localStorage.getItem('verifyId')
     let data = {
-        date:v,
-      id:this.id,
-      verify:verifyId
+      date: v,
+      id: this.id,
+      verify: verifyId
     }
     console.log(this.data)
-    this.service.select_date(data).subscribe((res:any)=>{
+    this.service.select_date(data).subscribe((res: any) => {
       console.log(res)
       this.getDetails(this.id)
     })
@@ -40,7 +44,16 @@ export class PropertyViewWebComponent implements OnInit {
   getDetails(id: string) {
     this.service.get_details(id).subscribe((res: any) => {
       console.log(res, 'details');
-      this.data =res
+      this.data = res
     });
+  }
+  go_live() {
+    this.service.go_love({ post: this.id }).subscribe((res: any) => {
+      console.log(res)
+      this.router.navigateByUrl("/live/golive?id=" + this.id)
+    })
+  }
+  ngOnDestroy(): void {
+    this.coundonw.unsubscribe();
   }
 }
