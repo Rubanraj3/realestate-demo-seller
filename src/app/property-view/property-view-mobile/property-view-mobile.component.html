@@ -31,9 +31,9 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let v of data.imageArr " style="
+            <div class="carousel-item" *ngFor="let v of data.imageArr;index as i " style="
                       background-image: url('../../../assets/images/Frame\ 2072.png');" 
-                      [class.active]="v == v" >
+                   [ngClass]="i ==0?'active':''" >
                         <img [src]="v" class="d-block " alt="...">
                       </div>
           </div>
@@ -120,7 +120,7 @@
             <h5>{{ data.propertyType }}</h5>
           </td>
           <td>
-            <p>Bhk / Building Type</p>
+            <p>Bhk or Building Type / Sqft</p>
             <h5>{{ data.bhkBuilding }}</h5>
           </td>
         </tr>

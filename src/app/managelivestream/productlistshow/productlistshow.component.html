@@ -32,7 +32,10 @@
                 </div>
                 <div class="col-6">
                     <div class="view-conent">
-                        <h6>Age of property</h6>
+                        <h6>Bhk or Building Type / Sqft</h6>
+                        <h6>
+                            {{streamDetails.bhkBuilding}}
+                        </h6>
 
                     </div>
                 </div>
@@ -51,13 +54,19 @@
                 <div class="col-6">
                     <div class="view-conent">
                         <h6>Tenant Type</h6>
-                        <h6>{{streamDetails.propertyType}}</h6>
+                        <h6>{{streamDetails.tenantType}}</h6>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="view-conent">
                         <h6>Location</h6>
                         <h6>{{streamDetails.location}}</h6>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="view-conent">
+                        <h6>Description</h6>
+                        <h6>{{streamDetails.Description}}</h6>
                     </div>
                 </div>
             </div>
