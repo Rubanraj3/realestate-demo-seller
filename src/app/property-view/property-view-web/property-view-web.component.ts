@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs';
+import { SocketioService } from 'src/app/managelivestream/socketio.service';
 import { SellerServiceService } from 'src/app/seller-service.service';
 
 @Component({
@@ -21,8 +22,17 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
   constructor(
     private arouter: ActivatedRoute,
     private service: SellerServiceService,
-    private router: Router
+    private router: Router,
+    private socket: SocketioService
   ) { }
+  buyer_joined(id: any) {
+    this.socket.buyer_joined(id).subscribe((res: any) => {
+      console.log(res)
+      if (this.data != null) {
+        this.data.status = res.stream.status;
+      }
+    })
+  }
   id: any;
   data: any = []
   popup: boolean = false
@@ -45,6 +55,9 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
     this.service.get_details(id).subscribe((res: any) => {
       console.log(res, 'details');
       this.data = res
+      if (res.streamID != null) {
+        this.buyer_joined(res.streamID)
+      }
     });
   }
   go_live() {

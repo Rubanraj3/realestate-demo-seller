@@ -238,4 +238,17 @@ export class SocketioService {
   }
 
 
+
+  buyer_joined(channel: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(channel + '_buyer_registor', (data: any) => {
+        observer.next(data);
+      });
+      return () => {
+      }
+    });
+  }
+
+
+
 }
