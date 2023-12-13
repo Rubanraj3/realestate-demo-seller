@@ -415,3 +415,83 @@ nav ul li{
     font-weight: 700;
     font-size: 15px;
   }
+  .share-box{
+    background-color: rgba(241, 246, 249, 1);
+    height: 265px;
+    width: 480px;
+    padding: 10px 20px;
+
+  }
+  
+  .share-sbox{
+    display: flex;
+    height: 38px;
+    width: 150px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .share-sbox p{
+    margin-top: 3px;
+    margin-left: 5px;
+  }
+  .box-head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--bgBlue);
+  }
+  .share-sbox span{
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+  }
+  .sbox-content{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: 60px;
+    grid-column-gap: 25px;
+    padding: 0 30px;
+  }
+  .box-btm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .box-btm input{
+    height: 35px;
+  }
+  .box-btm button{
+    background-color: black;
+    color: white;
+    width: 70px;
+    height: 35px;
+    display: flex;
+    border-radius: 6px;
+    align-items: center;
+    padding: 8px 5px;
+  }
+  .fb{
+    color: rgba(59, 89, 152, 1);
+    background-color: rgba(59, 89, 152, 1);
+  }
+  .wp{
+    color: rgba(37, 211, 102, 1);
+    background-color: rgba(37, 211, 102, 1);
+  }
+  .tw{
+    color: rgba(56, 154, 224, 1);
+    background-color: rgba(56, 154, 224, 1);
+  }
+  .mail{
+    color: rgba(212, 70, 56, 1);
+    background-color: rgba(212, 70, 56, 1);
+  }
+  .share-sbox p{
+    margin-top: 3px;
+    margin-left: 5px;
+    background-color: white;
+  }
