@@ -37,10 +37,6 @@
             fill="#473B32" fill-opacity="0.6" />
         </svg>
         <p> thi is address</p>
-        <!-- <p>
-              {{ data.BHKType }} House For {{ data.Type }} in,
-              {{ data.formatedAddress }}
-            </p> -->
       </div>
     </div>
     <div class="details-box">
@@ -51,7 +47,7 @@
           <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item" *ngFor="let v of data.imageArr;index as i " style="
-                      background-image: url('../../../assets/images/Frame\ 2072.png');"  [ngClass]="i ==0?'active':''">
+                      background-image: url('../../../assets/images/Frame\ 2072.png');" [ngClass]="i ==0?'active':''">
                 <img [src]="v" class="d-block " alt="...">
               </div>
 
