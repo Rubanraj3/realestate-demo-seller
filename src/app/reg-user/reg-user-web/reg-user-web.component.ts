@@ -47,7 +47,7 @@ export class RegUserWebComponent implements OnInit {
     var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
     this.counter = Math.floor(seconds) + 2;
     this.countDown = timer(0, 1000).subscribe(() => {
-      --this.counter;
+      // --this.counter;
       if (this.counter == 0) {
         this.countDown.unsubscribe();
       }
