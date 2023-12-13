@@ -21,7 +21,7 @@
                     <div style="padding: 0; display: flex;width: 97%;" #banusers>
                         <div class="div"
                             style="height: 38px;    width: 38px;color: white;border-radius: 50%; padding: 6px 13px;">
-                            <span class="show_icon_hide"
+                            <span class="show_icon_hide" *ngIf="item.userName !=null"
                                 style="font-size: 17px;margin-top: 2px;">{{item.userName[0]}}</span>
                             <!-- <a class="show_icon2">
                                 <svg width="13" height="13" viewBox="0 0 20 20" fill="none"
