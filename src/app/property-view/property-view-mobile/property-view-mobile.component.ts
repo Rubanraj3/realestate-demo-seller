@@ -9,9 +9,10 @@ import { SellerServiceService } from 'src/app/seller-service.service';
 })
 export class PropertyViewMobileComponent implements OnInit {
   ngOnInit(): void {
-    this.arouter.params.subscribe((params) => {
-      this.id = params['id'];
-    });
+    // this.arouter.params.subscribe((params) => {
+    //   this.id = params['id'];
+    // });
+    this.id = localStorage.getItem('id')
     this.getDetails(this.id);
   }
   constructor(
