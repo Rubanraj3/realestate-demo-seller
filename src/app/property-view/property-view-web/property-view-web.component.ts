@@ -12,6 +12,7 @@ import { SellerServiceService } from 'src/app/seller-service.service';
 export class PropertyViewWebComponent implements OnInit, OnDestroy {
   coundonw: any;
   now_time: any = new Date().getTime();
+  his: any;
   ngOnInit(): void {
     this.id = localStorage.getItem('id')
     this.getDetails(this.id);
@@ -49,6 +50,9 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
     this.service.select_date(data).subscribe((res: any) => {
       console.log(res)
       this.getDetails(this.id)
+      this.his = res._id;
+      this.data.start = res.start;
+      this.data.end = res.end;
     })
   }
   getDetails(id: string) {
@@ -56,6 +60,7 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
       console.log(res, 'details');
       this.data = res
       if (res.streamID != null) {
+        this.his = res.streamID;
         this.buyer_joined(res.streamID)
       }
     });
@@ -68,5 +73,14 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.coundonw.unsubscribe();
+  }
+  copy_success: any = false;
+  copy_now() {
+    this.copy_success = true;
+    navigator.clipboard.writeText('https://buyer.indiapropertyexpo.live/b/' + this.his);
+
+    setTimeout(() => {
+      this.copy_success = false;
+    }, 2000);
   }
 }

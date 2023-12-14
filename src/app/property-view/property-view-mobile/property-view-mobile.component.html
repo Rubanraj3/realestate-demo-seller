@@ -1,7 +1,7 @@
 <span class="bar"></span>
 <div class="main">
   <div class="top-section">
-    <div class="back" style="cursor: pointer !important">
+    <div class="back" style="cursor: pointer !important;margin: 0;padding: 10px;">
       <!-- <svg
         width="15"
         height="25"
@@ -15,43 +15,43 @@
           fill-opacity="0.6"
         />
       </svg> -->
-      <p>{{data.category}} > {{data.postType}}</p>
+      <p style="margin: 0;padding: 10px;">{{data.category}} > {{data.postType}}</p>
       <!-- <p>
           {{ data.BHKType }} House For {{ data.Type }} in,
           {{ data.formatedAddress }}
         </p> -->
+      <ng-container *ngIf="data !=null">
+        <div class="share"
+          *ngIf="data.status =='Ready' && data.end >now_time || data.status =='On-Going' && data.end >now_time  || data.status =='Scheduled' && data.end >now_time ">
+          <a (click)="share()">
+            <svg width="44" height="30" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="44" height="41" rx="5" fill="white" />
+              <path
+                d="M21.7073 24.2059H19.3659C17.4454 24.2051 15.5612 24.7582 13.9171 25.8055C12.273 26.8527 10.9314 28.3542 10.0375 30.1476C10.0123 29.8148 9.99984 29.481 10 29.1471C10 22.3245 15.2414 16.7941 21.7073 16.7941V10L34 20.5L21.7073 31V24.2059ZM19.3659 21.7353H24.0488V25.8216L30.2782 20.5L24.0488 15.1784V19.2647H21.7073C20.3613 19.2631 19.0308 19.5684 17.8069 20.1596C16.583 20.7508 15.4946 21.614 14.6162 22.6902C16.128 22.058 17.7397 21.734 19.3659 21.7353Z"
+                fill="#394867" />
+            </svg>
+          </a>
+        </div>
+      </ng-container>
     </div>
   </div>
   <div class="details-box">
     <div class="details-container">
       <div class="slides">
-        <div
-          id="carouselExampleAutoplaying"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item" *ngFor="let v of data.imageArr;index as i " style="
-                      background-image: url('../../../assets/images/Frame\ 2072.png');" 
-                   [ngClass]="i ==0?'active':''" >
-                        <img [src]="v" class="d-block " alt="...">
-                      </div>
+                      background-image: url('../../../assets/images/Frame\ 2072.png');" [ngClass]="i ==0?'active':''">
+              <img [src]="v" class="d-block " alt="...">
+            </div>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev"
-          >
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next"
-          >
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -60,45 +60,28 @@
       <table>
         <tr>
           <td class="line-1">
-            <span
-              ><h5>Stream Name</h5>
-              <p>06.30pm</p></span
-            >
+            <span>
+              <h5>Stream Name</h5>
+              <p>06.30pm</p>
+            </span>
             <span class="bttns">
               <button *ngIf="false">Live</button>
               <div style="position: relative;">
-                <button
-                (click)="popup = !popup"
-                *ngIf="data.status == 'Pending'"
-                for="select1"
-                class="select-btn"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H1C0.734784 20 0.48043 19.8946 0.292893 19.7071C0.105357 19.5196 0 19.2652 0 19V3C0 2.73478 0.105357 2.48043 0.292893 2.29289C0.48043 2.10536 0.734784 2 1 2H5V0H7V2H13V0H15V2ZM13 4H7V6H5V4H2V8H18V4H15V6H13V4ZM18 10H2V18H18V10ZM4 13H6V15H4V13ZM8 13H16V15H8V13Z"
-                    fill="white"
-                  />
-                </svg>
-                Select
-              </button>
+                <button (click)="popup = !popup" *ngIf="data.status == 'Pending'" for="select1" class="select-btn">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M15 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H1C0.734784 20 0.48043 19.8946 0.292893 19.7071C0.105357 19.5196 0 19.2652 0 19V3C0 2.73478 0.105357 2.48043 0.292893 2.29289C0.48043 2.10536 0.734784 2 1 2H5V0H7V2H13V0H15V2ZM13 4H7V6H5V4H2V8H18V4H15V6H13V4ZM18 10H2V18H18V10ZM4 13H6V15H4V13ZM8 13H16V15H8V13Z"
+                      fill="white" />
+                  </svg>
+                  Select
+                </button>
               </div>
               <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
-                <input
-                  style="width: 100%"
-                  (change)="showDate(date)"
-                  #date
-                  type="datetime-local"
-                />
+                <input style="width: 100%" (change)="showDate(date)" #date type="datetime-local" />
               </span>
-             
+
             </span>
-          
+
             <!-- && data.status == 'Pending' -->
           </td>
         </tr>
