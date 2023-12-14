@@ -13,6 +13,7 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
   coundonw: any;
   now_time: any = new Date().getTime();
   his: any;
+  today:any 
   ngOnInit(): void {
     this.id = localStorage.getItem('id')
     this.getDetails(this.id);
@@ -25,7 +26,10 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
     private service: SellerServiceService,
     private router: Router,
     private socket: SocketioService
-  ) { }
+  ) { 
+    const currentDate = new Date();
+    this.today = currentDate.toISOString().slice(0, 16); // Format: "YYYY-MM-DDTHH:mm"
+  }
   buyer_joined(id: any) {
     this.socket.buyer_joined(id).subscribe((res: any) => {
       console.log(res)
@@ -37,6 +41,7 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
   id: any;
   data: any = []
   popup: boolean = false
+  timeErr= false
   showDate(show: HTMLInputElement) {
     console.log(show.value)
     let v = show.value
@@ -46,14 +51,33 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
       id: this.id,
       verify: verifyId
     }
-    console.log(this.data)
-    this.service.select_date(data).subscribe((res: any) => {
-      console.log(res)
-      this.getDetails(this.id)
-      this.his = res._id;
-      this.data.start = res.start;
-      this.data.end = res.end;
-    })
+  let   currentDate = new Date();
+  let val = new Date(v);
+     
+    console.log(val , currentDate,val > currentDate)
+
+    if( val > currentDate){
+      this.timeErr=false
+      this.service.select_date(data).subscribe((res: any) => {
+        console.log(res)
+        this.getDetails(this.id)
+        this.his = res._id;
+        this.data.start = res.start;
+        this.data.end = res.end;
+      })
+    }else{
+      this.timeErr = true
+    }
+ 
+  }
+  dateToday(): Date {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    return new Date(year, month, day, hour, minute);
   }
   getDetails(id: string) {
     this.service.get_details(id).subscribe((res: any) => {

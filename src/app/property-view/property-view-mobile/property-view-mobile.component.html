@@ -15,7 +15,8 @@
           fill-opacity="0.6"
         />
       </svg> -->
-      <p style="margin: 0;padding: 10px;">{{data.category}} > {{data.postType}}</p>
+      <p style="margin: 0;padding: 10px;">{{ data.category }} {{ data.category =='Commercial'? 'Property': 'House'}} For {{ data.postType }} in
+        {{ data.location }}</p>
       <!-- <p>
           {{ data.BHKType }} House For {{ data.Type }} in,
           {{ data.formatedAddress }}
@@ -62,10 +63,13 @@
           <td class="line-1">
             <span>
               <h5>Stream Name</h5>
-              <p>06.30pm</p>
+              <p *ngIf="!data.start">Stream Time</p>
+                <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
             </span>
             <span class="bttns">
               <button *ngIf="false">Live</button>
+              <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer Join)</p></span>
+              <span *ngIf="data.status =='Ready'&& data.start >now_time"><p>Waiting</p></span>
               <div style="position: relative;">
                 <button (click)="popup = !popup" *ngIf="data.status == 'Pending'" for="select1" class="select-btn">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +81,9 @@
                 </button>
               </div>
               <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
-                <input style="width: 100%" (change)="showDate(date)" #date type="datetime-local" />
+                <input [min]="today | date:'yyyy-MM-ddTHH:mm'" style="width: 100%" (change)="showDate(date)" #date type="datetime-local" />
+                <p   *ngIf="timeErr" style="color: red;
+                text-align: center;">Invalid Time</p>
               </span>
 
             </span>
@@ -87,14 +93,14 @@
         </tr>
         <tr>
           <td>
-            <h5>Rent Expectation</h5>
-            <p>{{data.priceExp}}</p>
+            <p>Price Expectation</p>
+            <h5>{{data.priceExp| currency:'INR':true}}</h5>
           </td>
         </tr>
         <tr>
           <td colspan="3">
-            <h5>Address</h5>
-            <p>{{ data.location }}{{ data.Description }}</p>
+            <p>Location</p>
+            <h5>{{data.location}}</h5>
           </td>
         </tr>
         <tr class="line-3">
@@ -107,7 +113,7 @@
             <h5>{{ data.bhkBuilding }}</h5>
           </td>
         </tr>
-        <tr class="line-3">
+        <tr class="line-3" *ngIf="data.postType!=='Sale'">
           <td>
             <p>Furnishing status</p>
             <h5>{{ data.furnitionStatus }}</h5>
@@ -116,6 +122,13 @@
             <p>Tenat Type</p>
             <h5>{{data.tenantType}}</h5>
           </td>
+        </tr>
+        <tr  *ngIf="data.postType=='Sale'">
+          <td>
+            <p>Furnishing status</p>
+            <h5>{{ data.furnitionStatus }}</h5>
+          </td>
+          
         </tr>
         <tr>
           <td colspan="3" style="align-items: baseline;

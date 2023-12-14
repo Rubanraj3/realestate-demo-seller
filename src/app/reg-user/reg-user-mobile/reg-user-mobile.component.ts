@@ -84,7 +84,7 @@ export class RegUserMobileComponent implements OnInit {
       this.service.verify_otp(this.form.value).subscribe(
         (res: any) => {
           this.countDown.unsubscribe();
-          this.router.navigateByUrl('property/' + this.id);
+          this.router.navigateByUrl('/property',{replaceUrl:true});
           let verifyId = res._id
           localStorage.setItem('verifyId',verifyId)
           console.log(res);

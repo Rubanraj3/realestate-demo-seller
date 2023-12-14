@@ -9,7 +9,7 @@ import { SellerServiceService } from 'src/app/seller-service.service';
   templateUrl: './reg-user-web.component.html',
   styleUrls: ['./reg-user-web.component.css'],
 })
-export class RegUserWebComponent implements OnInit {
+export class RegUserWebComponent implements OnInit  {
   constructor(
     private arouter: ActivatedRoute,
     private service: SellerServiceService,
@@ -47,11 +47,11 @@ export class RegUserWebComponent implements OnInit {
     var seconds = (endDate.getTime() - startDate.getTime()) / 1000;
     this.counter = Math.floor(seconds) + 2;
     this.countDown = timer(0, 1000).subscribe(() => {
-      // --this.counter;
+      --this.counter;
       if (this.counter == 0) {
         this.countDown.unsubscribe();
       }
-      console.log(this.counter);
+      // console.log(this.counter);
     });
   }
   form = new FormGroup({
@@ -77,6 +77,7 @@ export class RegUserWebComponent implements OnInit {
   checkErr() {
     this.err = '';
   }
+
   submit() {
     this.submitted = true;
     console.log(this.form.value);
@@ -84,7 +85,7 @@ export class RegUserWebComponent implements OnInit {
       this.service.verify_otp(this.form.value).subscribe(
         (res: any) => {
           this.countDown.unsubscribe();
-          this.router.navigateByUrl('/property');
+          this.router.navigateByUrl('/property',{replaceUrl:true});
           let verifyId = res._id
           localStorage.setItem('verifyId',verifyId)
           console.log(res);

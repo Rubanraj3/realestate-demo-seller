@@ -48,7 +48,7 @@
   }
   .line-1{
     display: grid;
-    grid-template-columns: 30% 35%;
+    grid-template-columns: 50% 50%;
     row-gap: 20px;
     justify-content: space-between;
   }
@@ -98,10 +98,10 @@
   }
   h5{
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
   }
   .select-btn{
-    width: 105px !important;
+    width: 170px !important;
     background-color: var(--bgBlue) !important;
     color: rgb(255, 255, 255);
     display: flex;
@@ -113,12 +113,21 @@
   }
   .small-pop{
     position: absolute;
-    top: 280px;
+    top: 300px;
     background-color: white;
     height: 60px !important;
     display: block;
-    width: 110px;
+    width: 170px;
     padding: 5px 5px;
     /* top: -20px; */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  p{
+    color: rgba(57, 72, 103, 1);
+    font-size: 13px;
+  }
+
+  .carousel-control-next, .carousel-control-prev{
+    top: 100px;
+    height: 50px;
   }

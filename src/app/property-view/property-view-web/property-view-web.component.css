@@ -10,7 +10,8 @@
   }
   
   .main {
-    width: 70%;
+    margin: auto !important;
+    width: 80%;
     background-color: var( --bgligthBlue);
   
     margin: 10px 0px;
@@ -342,13 +343,13 @@ nav ul li{
   }
   .line-1{
     display: grid;
-    grid-template-columns: 30% 35%;
+    grid-template-columns: 25% 25% 25% 25%;
     row-gap: 20px;
     justify-content: space-between;
   }
   .line-2{
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: 25% 75%;
   }
   .line-3{
     display: grid;
@@ -381,23 +382,23 @@ nav ul li{
 }
 .small-pop{
   position: absolute;
-  bottom: 60px;
+  bottom: 64px;
   background-color: white;
   height: 60px !important;
   display: block;
-  width: 110px;
+  width: 200px;
   padding: 5px 5px;
   /* top: -20px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
   .select-btn{
-    width: 105px !important;
+    width: 200px !important;
     background-color: var(--bgBlue) !important;
     color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 35px;
+    height: 45px !important;
     gap: 10px;
     border: none;
   }
@@ -494,4 +495,7 @@ nav ul li{
     margin-top: 3px;
     margin-left: 5px;
     background-color: white;
+  }
+  p{
+    color: rgba(57, 72, 103, 1);
   }
