@@ -17,7 +17,7 @@
   <div class="laptop-view">
     <div class="product-list" *ngIf="streampost !=null" style="position:relative">
       <div *ngIf="view_chat_now_cart =='product'" style="height:100%">
-        <app-productlistshow [streamDetails]="streampost">
+        <app-productlistshow *ngIf="streampost !=null" [streamDetails]="streampost">
         </app-productlistshow>
       </div>
       <div class="product-view-now" *ngIf="view_chat_now_cart =='productview' && open_product_view !=null">
