@@ -42,7 +42,7 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
   data: any = []
   popup: boolean = false
   timeErr= false
-  showDate(show: HTMLInputElement) {
+  showDate(show: HTMLInputElement,submit:boolean) {
     console.log(show.value)
     let v = show.value
     let verifyId = localStorage.getItem('verifyId')
@@ -56,15 +56,18 @@ export class PropertyViewWebComponent implements OnInit, OnDestroy {
      
     console.log(val , currentDate,val > currentDate)
 
-    if( val > currentDate){
+    if( val > currentDate ){
       this.timeErr=false
-      this.service.select_date(data).subscribe((res: any) => {
-        console.log(res)
-        this.getDetails(this.id)
-        this.his = res._id;
-        this.data.start = res.start;
-        this.data.end = res.end;
-      })
+      if(submit){
+        this.service.select_date(data).subscribe((res: any) => {
+          console.log(res)
+          this.getDetails(this.id)
+          this.his = res._id;
+          this.data.start = res.start;
+          this.data.end = res.end;
+        })
+      }
+     
     }else{
       this.timeErr = true
     }

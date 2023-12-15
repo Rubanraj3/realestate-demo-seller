@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs/internal/observable/timer';
@@ -9,12 +9,15 @@ import { SellerServiceService } from 'src/app/seller-service.service';
   templateUrl: './reg-user-web.component.html',
   styleUrls: ['./reg-user-web.component.css'],
 })
-export class RegUserWebComponent implements OnInit  {
+export class RegUserWebComponent implements OnInit, OnDestroy  {
   constructor(
     private arouter: ActivatedRoute,
     private service: SellerServiceService,
     private router: Router
   ) {}
+  ngOnDestroy(): void {
+    this.countDown.unsubscribe();
+  }
   id: any;
   submitted: any;
   err: any;

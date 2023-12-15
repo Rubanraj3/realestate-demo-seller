@@ -66,11 +66,14 @@
               <p *ngIf="!data.start">Stream Time</p>
                 <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
             </span>
-            <span class="bttns">
+            <span class="bttns" style="position: relative;">
               <button *ngIf="false">Live</button>
               <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer Join)</p></span>
               <span *ngIf="data.status =='Ready'&& data.start >now_time"><p>Waiting</p></span>
-              <div style="position: relative;">
+              <button
+              *ngIf="data.status =='Ready' && data.end > now_time && data.start < now_time || data.status =='On-Going' && data.end >now_time && data.start < now_time"
+              (click)="go_live()">{{data.status=='On-Going'?'Resume':'Go Live'}}</button>
+              <div >
                 <button (click)="popup = !popup" *ngIf="data.status == 'Pending'" for="select1" class="select-btn">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -81,9 +84,12 @@
                 </button>
               </div>
               <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
-                <input [min]="today | date:'yyyy-MM-ddTHH:mm'" style="width: 100%" (change)="showDate(date)" #date type="datetime-local" />
+                <input [min]="today | date:'yyyy-MM-ddTHH:mm'" style="width: 100%" (change)="showDate(date,false)"  #date type="datetime-local" />
                 <p   *ngIf="timeErr" style="color: red;
-                text-align: center;">Invalid Time</p>
+                text-align: center;margin-bottom: 0;">Invalid Time</p>
+                  <span class="pop-sub">
+                    <button (click)="showDate(date,true)">Submit</button>
+                  </span>
               </span>
 
             </span>
@@ -91,10 +97,20 @@
             <!-- && data.status == 'Pending' -->
           </td>
         </tr>
-        <tr>
+        <tr *ngIf="data.postType=='Sale'">
           <td>
-            <p>Price Expectation</p>
-            <h5>{{data.priceExp| currency:'INR':true}}</h5>
+            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+          </td>
+        </tr>
+        <tr *ngIf="data.postType!=='Sale'"  class="line-3">
+          <td>
+            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+          </td>
+          <td>
+            <p>Tenat Type</p>
+            <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
           </td>
         </tr>
         <tr>
@@ -109,26 +125,19 @@
             <h5>{{ data.propertyType }}</h5>
           </td>
           <td>
-            <p>Bhk or Building Type / Sqft</p>
+            <p>Bhk or Building Type</p>
             <h5>{{ data.bhkBuilding }}</h5>
           </td>
         </tr>
-        <tr class="line-3" *ngIf="data.postType!=='Sale'">
+        <tr class="line-3" >
           <td>
             <p>Furnishing status</p>
             <h5>{{ data.furnitionStatus }}</h5>
           </td>
           <td>
-            <p>Tenat Type</p>
-            <h5>{{data.tenantType}}</h5>
+            <p>Built up area</p>
+            <h5>{{data.sqft}}.sqft</h5>
           </td>
-        </tr>
-        <tr  *ngIf="data.postType=='Sale'">
-          <td>
-            <p>Furnishing status</p>
-            <h5>{{ data.furnitionStatus }}</h5>
-          </td>
-          
         </tr>
         <tr>
           <td colspan="3" style="align-items: baseline;

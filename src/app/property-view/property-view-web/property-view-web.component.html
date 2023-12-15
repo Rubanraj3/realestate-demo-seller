@@ -101,43 +101,67 @@
                       fill="white" />
                   </svg> Select</button>
                 <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
-                  <input [min]="today | date:'yyyy-MM-ddTHH:mm'" style="width: 100%;" (change)="showDate(date)" #date type="datetime-local">
+                  <input [min]="today | date:'yyyy-MM-ddTHH:mm'"  (change)="showDate(date,false)"  style="width: 100%;"  #date type="datetime-local">
                   <p *ngIf="timeErr" style="color: red;
-                  text-align: center;">Invalid Time</p>
+                  text-align: center;font-size: 12px;margin-bottom: 0;">Invalid Time</p>
+                  <span class="pop-sub">
+                    <button (click)="showDate(date,true)">Submit</button>
+                  </span>
+                 
                 </span>
 
               </span>
             </td>
           </tr>
-          <tr class="line-2">
+          <ng-container *ngIf="data.postType!=='Sale'">
+          <tr>
             <td>
-              <p>Price Expectation</p>
-              <h5>{{data.priceExp| currency:'INR':true}}</h5>
-            </td>
-            <td colspan="3">
               <p>Location</p>
               <h5>{{data.location}}</h5>
             </td>
           </tr>
-          <tr class="line-3" *ngIf="data.postType!=='Sale'">
+          <tr class="line-4">
             <td>
-              <p>Property type</p>
-              <h5>{{data.propertyType}}</h5>
+              <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+              <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
             </td>
             <td>
-              <p>Bhk or Building Type / Sqft</p>
-              <h5>{{data.bhkBuilding}}</h5>
-            </td>
-            <td>
-              <p>Furnishing status</p>
-              <h5>{{data.furnitionStatus}}</h5>
+              <p>Built up area</p>
+              <h5>{{data.sqft}}.sqft</h5>
             </td>
             <td>
               <p>Tenat Type</p>
               <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
             </td>
           </tr>
-          <tr class="line-3" *ngIf="data.postType=='Sale'" style="grid-template-columns: 25% 37.5% 37.5%;">
+          <tr class="line-4">
+            <td>
+              <p>Property type</p>
+              <h5>{{data.propertyType}}</h5>
+            </td>
+            <td>
+              <p>Bhk or Building Type</p>
+              <h5>{{data.bhkBuilding}}</h5>
+            </td>
+            <td>
+              <p>Furnishing status</p>
+              <h5>{{data.furnitionStatus}}</h5>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="data.postType=='Sale'">
+          <tr class="line-2">
+            <td>
+              <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
+              <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+            </td>
+            <td colspan="3">
+              <p>Location</p>
+              <h5>{{data.location}}</h5>
+            </td>
+          </tr>
+       
+          <tr class="line-3" >
             <td>
               <p>Property type</p>
               <h5>{{data.propertyType}}</h5>
@@ -150,8 +174,12 @@
               <p>Furnishing status</p>
               <h5>{{data.furnitionStatus}}</h5>
             </td>
-          
+            <td>
+              <p>Built up area</p>
+              <h5>{{data.sqft}}.sqft</h5>
+            </td>
           </tr>
+        </ng-container>
           <tr>
             <td colspan="3" style="padding: 10px;align-items: baseline;
                      padding-left: 6%;height: auto;">

@@ -9,9 +9,11 @@ import { RegUserComponent } from './reg-user/reg-user.component';
 import { PropertyViewComponent } from './property-view/property-view.component';
 import { PropertyViewMobileComponent } from './property-view/property-view-mobile/property-view-mobile.component';
 import { PropertyViewWebComponent } from './property-view/property-view-web/property-view-web.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OtpTimerPipe } from './otp-timer.pipe';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderInterceptor } from './interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { OtpTimerPipe } from './otp-timer.pipe';
     PropertyViewComponent,
     PropertyViewMobileComponent,
     PropertyViewWebComponent,
-    OtpTimerPipe
+    OtpTimerPipe,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import { OtpTimerPipe } from './otp-timer.pipe';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

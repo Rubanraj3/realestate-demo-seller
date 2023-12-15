@@ -101,6 +101,8 @@
     font-size: 14px;
   }
   .select-btn{
+    position: relative;
+    z-index: 111;
     width: 170px !important;
     background-color: var(--bgBlue) !important;
     color: rgb(255, 255, 255);
@@ -112,10 +114,13 @@
     border: none;
   }
   .small-pop{
+    -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     position: absolute;
-    top: 300px;
+    /* top: 280px; */
+    bottom: 36px;
     background-color: white;
-    height: 60px !important;
+    height: 100px !important;
     display: block;
     width: 170px;
     padding: 5px 5px;
@@ -130,4 +135,35 @@
   .carousel-control-next, .carousel-control-prev{
     top: 100px;
     height: 50px;
+  }
+  .pop-sub{
+    display: flex;
+    height: 60px !important;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  @-webkit-keyframes slide-in-bottom {
+    0% {
+      -webkit-transform: translateY(100px);
+              transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes slide-in-bottom {
+    0% {
+      -webkit-transform: translateY(100px);
+              transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+              transform: translateY(0);
+      opacity: 1;
+    }
   }

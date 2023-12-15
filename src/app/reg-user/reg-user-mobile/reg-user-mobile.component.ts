@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs/internal/observable/timer';
@@ -9,7 +9,7 @@ import { SellerServiceService } from 'src/app/seller-service.service';
   templateUrl: './reg-user-mobile.component.html',
   styleUrls: ['./reg-user-mobile.component.css']
 })
-export class RegUserMobileComponent implements OnInit {
+export class RegUserMobileComponent implements OnInit, OnDestroy  {
   constructor(
     private arouter: ActivatedRoute,
     private service: SellerServiceService,
@@ -22,6 +22,9 @@ export class RegUserMobileComponent implements OnInit {
   targetTime: any;
   counter: any;
   countDown: any;
+  ngOnDestroy(): void {
+    this.countDown.unsubscribe();
+  }
   ngOnInit(): void {
     this.arouter.params.subscribe((params) => {
       this.id = params['id'];
