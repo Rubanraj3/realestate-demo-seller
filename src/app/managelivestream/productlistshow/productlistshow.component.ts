@@ -14,8 +14,13 @@ export class ProductlistshowComponent implements OnInit {
   constructor(public Socket: SocketioService) { }
   primaryHost: any = false;
   streamProduct: any;
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.Socket.interested_post(this.streamDetails.stream.channel).subscribe((res: any) => {
+      console.log(res, 876578)
+      this.streamDetails.intrested = res.value;
+    })
+    // console.log(this.streamDetails.stream.channel, 876578765)
   }
 
 }

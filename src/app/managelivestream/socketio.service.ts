@@ -250,5 +250,16 @@ export class SocketioService {
   }
 
 
+  interested_post(channel: any): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(channel + '_interest_count', (data: any) => {
+        observer.next(data);
+      });
+      return () => {
+      }
+    });
+  }
+
+
 
 }

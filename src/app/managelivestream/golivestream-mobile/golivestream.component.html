@@ -327,7 +327,7 @@
         </svg>
       </a>
     </div>
-    <app-productlistshow-mobile [streamDetails]="streampost">
+    <app-productlistshow-mobile *ngIf="streampost !=null" [streamDetails]="streampost">
     </app-productlistshow-mobile>
   </div>
 
