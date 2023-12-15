@@ -23,7 +23,7 @@ export class RegUserWebComponent implements OnInit, OnDestroy  {
   err: any;
   otpTime: any;
   targetTime: any;
-  counter: any;
+  counter: any=0
   countDown: any;
   ngOnInit(): void {
     this.arouter.params.subscribe((params) => {

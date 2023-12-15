@@ -306,7 +306,7 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
     if (answer) {
       this.agora.end_stream(this.id).subscribe((res: any) => {
         this.dash.feedback.next(true);
-        this.router.navigate(['/stream/livestream'], { replaceUrl: true })
+        this.router.navigate(['/property'], { replaceUrl: true })
 
       })
     }
@@ -340,7 +340,7 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
   }
   back_button() {
     // window.history.back();
-    window.location.href = "/stream/livestream";
+    window.location.href = "/property";
     // this.router.navigateByUrl("/dashboard/livestream")
   }
   leave_subhost(item: any) {
@@ -581,7 +581,7 @@ export class FormatTimePipe implements PipeTransform {
     else {
       this.leave.leave_host(true);
       // this.router.navigateByUrl('dashboard/livestream')
-      this.router.navigate(['/stream/livestream'], { replaceUrl: true })
+      // this.router.navigate(['/prop'], { replaceUrl: true })
 
       return (
         ("00") +

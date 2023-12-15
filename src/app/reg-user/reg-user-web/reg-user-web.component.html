@@ -78,7 +78,7 @@
           
           >
             <label style="width: 500px"></label>
-            <p style="font-size: 14px;" *ngIf="counter == null" (click)="resendOtp()" >Resend Otp!</p>
+            <p style="font-size: 14px;cursor: pointer;" *ngIf="counter == 0" (click)="resendOtp()" >Resend Otp!</p>
             <p  style="font-size: 14px;" *ngIf="counter>0">{{counter | otpTimer}}</p>
           </div>
           <div

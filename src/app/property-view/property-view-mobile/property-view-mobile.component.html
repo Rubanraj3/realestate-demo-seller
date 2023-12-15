@@ -63,13 +63,14 @@
           <td class="line-1">
             <span>
               <h5>Stream Name</h5>
-              <p *ngIf="!data.start">Stream Time</p>
+              <p *ngIf="!data.start">Stream Date and Time</p>
                 <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
             </span>
             <span class="bttns" style="position: relative;">
               <button *ngIf="false">Live</button>
               <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer Join)</p></span>
               <span *ngIf="data.status =='Ready'&& data.start >now_time"><p>Waiting</p></span>
+              <span *ngIf="data.status =='Completed' "><p>Completed</p></span>
               <button
               *ngIf="data.status =='Ready' && data.end > now_time && data.start < now_time || data.status =='On-Going' && data.end >now_time && data.start < now_time"
               (click)="go_live()">{{data.status=='On-Going'?'Resume':'Go Live'}}</button>
@@ -141,7 +142,7 @@
         </tr>
         <tr>
           <td colspan="3" style="align-items: baseline;
-          padding: 10px;">
+          padding: 10px;height: auto;">
             <h5>Description</h5>
             <p>{{ data.Description }}</p>
           </td>

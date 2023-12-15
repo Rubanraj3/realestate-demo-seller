@@ -46,7 +46,7 @@
           Email is required !
         </p> -->
       
-        <span  class="small" *ngIf="counter == null" (click)="resendOtp()">Resend Otp!</span>
+        <span  class="small" *ngIf="counter == 0" (click)="resendOtp()">Resend Otp!</span>
         <span  class="small" *ngIf="counter>0">{{counter | otpTimer}}</span>
         <div class="error-msg">
           <p  *ngIf="submitted && form.get('otp')?.invalid">
