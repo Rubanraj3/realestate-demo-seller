@@ -68,9 +68,9 @@
             </span>
             <span class="bttns" style="position: relative;">
               <button *ngIf="false">Live</button>
-              <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer Join)</p></span>
-              <span *ngIf="data.status =='Ready'&& data.start >now_time"><p>Waiting</p></span>
-              <span *ngIf="data.status =='Completed' "><p>Completed</p></span>
+              <span *ngIf="data.status =='Scheduled' ">Scheduled (Min One Buyer Join)</span>
+              <span *ngIf="data.status =='Ready'&& data.start >now_time">Waiting</span>
+              <span *ngIf="data.status =='Completed'  || data.end < now_time "><p>Completed</p></span>
               <button
               *ngIf="data.status =='Ready' && data.end > now_time && data.start < now_time || data.status =='On-Going' && data.end >now_time && data.start < now_time"
               (click)="go_live()">{{data.status=='On-Going'?'Resume':'Go Live'}}</button>
@@ -110,7 +110,7 @@
             <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
           </td>
           <td>
-            <p>Tenat Type</p>
+            <p>Tenant Type</p>
             <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
           </td>
         </tr>

@@ -286,6 +286,9 @@ nav ul li{
     display: flex;
   align-items: center;
   }
+  header>div>p{
+    color: white;
+  }
   header>div>.login-button{
     background: white;
   }

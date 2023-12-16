@@ -296,18 +296,14 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
     await this.stream.localUser(res.token, res.uid, '', channel, res);
   }
   end_stream() {
-    // this.agora.end_stream(this.id).subscribe((res: any) => {
-    //   console.log(res);
-    //   // this.router.navigateByUrl('/stream/livestream')
-    //   window.close()
-    //   window.history.back()
-    // })
+    
     var answer = confirm("Are you sure you want to End this Live Streaming")
     if (answer) {
       this.agora.end_stream(this.id).subscribe((res: any) => {
+        console.log(res);
         this.dash.feedback.next(true);
-        this.router.navigate(['/property'], { replaceUrl: true })
-
+        window.close()
+        window.history.back()
       })
     }
   }
