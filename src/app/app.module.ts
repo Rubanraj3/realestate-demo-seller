@@ -14,6 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OtpTimerPipe } from './otp-timer.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderInterceptor } from './interceptor.interceptor';
+import { CompeletedStreamComponent } from './compeleted-stream/compeleted-stream.component';
+import { WebCompletedStreamComponent } from './compeleted-stream/web-completed-stream/web-completed-stream.component';
+import { MobileCompletedStreamComponent } from './compeleted-stream/mobile-completed-stream/mobile-completed-stream.component';
+import { StreamDetailsComponent } from './stream-details/stream-details.component';
+import { WebStreamDetailsComponent } from './stream-details/web-stream-details/web-stream-details.component';
+import { MobileStreamDetailsComponent } from './stream-details/mobile-stream-details/mobile-stream-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,13 @@ import { LoaderInterceptor } from './interceptor.interceptor';
     PropertyViewMobileComponent,
     PropertyViewWebComponent,
     OtpTimerPipe,
-    LoaderComponent
+    LoaderComponent,
+    CompeletedStreamComponent,
+    WebCompletedStreamComponent,
+    MobileCompletedStreamComponent,
+    StreamDetailsComponent,
+    WebStreamDetailsComponent,
+    MobileStreamDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -284,10 +284,13 @@ nav ul li{
   }
   header>div{
     display: flex;
-  align-items: center;
+    align-items: center;
+    width: 400px;
+    justify-content: space-evenly;
   }
   header>div>p{
     color: white;
+    position: relative;
   }
   header>div>.login-button{
     background: white;
@@ -295,6 +298,20 @@ nav ul li{
   header>div>.register-button{
     background:var(--bgligthBlue);
   
+  }
+  header>div>p>a{
+    color: white;
+    text-decoration: none;
+  }
+  .svg1{
+   
+    position: absolute;
+    top: 15px;
+    left: 0;
+
+  }
+  .active + .svg{
+    display:inline;
   }
   header>div>button{
 

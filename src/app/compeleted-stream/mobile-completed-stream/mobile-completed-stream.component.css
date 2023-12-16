@@ -1,0 +1,124 @@
+p{
+    margin-bottom: 0;
+}
+.heading-bar{
+    display: flex;
+    height: 60px;
+    width: 100%;
+    background-color: var(--bgligthBlue);
+    align-items: center;
+  
+}
+.nav-bar{
+    margin: 0px 0 0 20px;
+    width: 10%;
+}
+.nav-title{
+    height: 45%;
+    min-width: 80%;
+    font-size: 17px;
+    font-weight: 700;
+}
+.bar{
+    display: block;
+    width: 100%;
+    height: 30px;
+    background-color: #4D5A76;
+}
+.add{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: var(--blue);
+    font-size: 17px;
+    font-weight: 550;
+}
+.view-post{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.view-post a:active{
+    color: blue;
+}
+.page-container{
+    height: auto;
+    min-height: 100vh;
+    background-color: var(--bgligthBlue);
+    width: 100%;
+    padding: 20px 0px 0 0;
+}
+.page-holder{
+    width: 100%;
+    height: auto;
+    padding: 0 20px 0 20px;
+}
+.page-card{
+    height: 160px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 50px;
+}
+.bitss{
+    display: flex;
+}
+.card-content{
+    display: flex;
+    padding: 11px 0px 0px 15px;
+    height: 45px;
+    align-items: center;
+}
+.num{
+    justify-content: space-between;
+    align-items: center;
+}
+.cus-btts{
+    background-color: rgba(222, 228, 240, 1);
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px 0 0 0;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: 50% 50%;
+}
+.int{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 75% 25%;
+    gap: 5px;
+    padding: 0 9px;
+    font-size: 13px;
+    
+}
+
+.cus-btts button{
+    padding: 5px 20px;
+    height: 40px;
+    font-size: 19px;
+    width: 146px;
+    border-radius: 12px;
+    border: 0;
+}
+.red{
+    background-color: rgba(255, 0, 0, 0.1);
+    color: red;
+}
+.blu{
+    background-color: rgba(57, 72, 103, 0.1);
+    color: rgba(57, 72, 103, 1);
+}
+.sch{
+    background-color:  rgba(71, 59, 50, 0.1);
+    color: rgba(71, 59, 50, 1);
+}
+.fix{
+    background-color: rgba(24, 119, 242, 0.1);
+    color: rgba(24, 119, 242, 1);
+}
+.vis{
+    background: rgba(253, 132, 31, 0.1);
+    color: rgba(253, 132, 31, 1);
+
+}
