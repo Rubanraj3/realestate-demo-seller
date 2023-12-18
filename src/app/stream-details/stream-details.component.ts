@@ -12,7 +12,7 @@ export class StreamDetailsComponent {
   show!: boolean;
   @HostListener('window:resize', ['$event'])
   onResize() {
-    console.log(window.innerWidth);
+    //console.log(window.innerWidth);
     this.show = window.innerWidth > 800;
   }
 }

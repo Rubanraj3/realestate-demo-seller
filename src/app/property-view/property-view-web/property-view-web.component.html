@@ -8,7 +8,7 @@
 
   <div>
     <p><a  routerLinkActive="active"
-         routerLink="/property">Streams</a>
+         routerLink="/property">Stream</a>
          <span class="svg1"
          ><svg
            width="65"
@@ -22,7 +22,7 @@
        </span></p>
     <p>
       <a routerLinkActive="active"
-       routerLink="/completed-stream">Completed Stream</a>
+       routerLink="/completed-stream">Completed Streams</a>
       <span class="svg"
         ><svg
           width="100"
@@ -108,7 +108,7 @@
               <span></span>
               <span></span>
               <span class="bttns">
-                <span *ngIf="data.status =='Scheduled' ">Scheduled (Min One Buyer Join)</span>
+                <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer should be Join)</p></span>
                 <span *ngIf="data.status =='Ready'&& data.start >now_time">Waiting</span>
                 <span *ngIf="data.status =='Completed'  || data.end < now_time "><p>Completed</p></span>
                 <button
@@ -187,7 +187,7 @@
               <h5>{{data.propertyType}}</h5>
             </td>
             <td>
-              <p>Bhk or Building Type / Sqft</p>
+              <p>Bhk or Building Type</p>
               <h5>{{data.bhkBuilding}}</h5>
             </td>
             <td>
@@ -208,6 +208,7 @@
             </td>
           </tr>
         </table>
+      
       </div>
     </div>
   </div>

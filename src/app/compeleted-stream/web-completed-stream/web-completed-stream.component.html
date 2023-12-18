@@ -7,7 +7,7 @@
 
   <div>
     <p><a  routerLinkActive="active"
-         routerLink="/property">Streams</a>
+         routerLink="/property">Stream</a>
          <span class="svg"
          ><svg
            width="100"
@@ -21,7 +21,7 @@
        </span></p>
     <p>
       <a routerLinkActive="active"
-       routerLink="/completed-stream">Completed Stream</a>
+       routerLink="/completed-stream">Completed Streams</a>
       <span class="svg"
         ><svg
           width="100"
@@ -56,24 +56,7 @@
             </svg>
             Streams
           </td>
-          <td>
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.33333 1V3M13.6667 1V3M1 15V5C1 4.46957 1.21071 3.96086 1.58579 3.58579C1.96086 3.21071 2.46957 3 3 3H15C15.5304 3 16.0391 3.21071 16.4142 3.58579C16.7893 3.96086 17 4.46957 17 5V15M1 15C1 15.5304 1.21071 16.0391 1.58579 16.4142C1.96086 16.7893 2.46957 17 3 17H15C15.5304 17 16.0391 16.7893 16.4142 16.4142C16.7893 16.0391 17 15.5304 17 15M1 15V8.33333C1 7.8029 1.21071 7.29419 1.58579 6.91912C1.96086 6.54405 2.46957 6.33333 3 6.33333H15C15.5304 6.33333 16.0391 6.54405 16.4142 6.91912C16.7893 7.29419 17 7.8029 17 8.33333V15"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Created Date & Time
-          </td>
+         
           <td>
             <svg
               width="18"
@@ -110,23 +93,7 @@
             </svg>
             Stream Status
           </td>
-          <td>
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M15.7091 4.44264L11.5574 0.290982C11.37 0.103378 11.1205 0 10.8554 0C10.5902 0 10.3412 0.103263 10.1538 0.290752L7.07396 3.37053C6.65965 3.78471 6.74303 4.33851 6.77149 4.52751L6.77156 4.528L7.20159 7.2013L4.5119 6.76909C4.39975 6.75386 4.30099 6.74648 4.21006 6.74648C3.87015 6.74648 3.5876 6.85666 3.37057 7.0738L0.290755 10.1536C0.103149 10.3409 9.624e-08 10.5903 9.624e-08 10.8551C-0.000115142 11.1203 0.103264 11.3697 0.290755 11.5569L4.44276 15.7092C4.63036 15.8968 4.87946 15.9999 5.14437 15.9999C5.4094 15.9999 5.65873 15.8967 5.84623 15.7092L8.92604 12.6294C9.34035 12.2152 9.25697 11.6614 9.22851 11.4724L9.22844 11.4719L8.79841 8.79862L11.4881 9.23082C11.6002 9.24605 11.699 9.25344 11.7899 9.25344C12.1298 9.25344 12.4124 9.14325 12.6294 8.92611L15.7092 5.84634C15.8969 5.65896 16 5.40964 16 5.14485C16 4.87959 15.8967 4.63014 15.7091 4.44264ZM4.55153 9.33405L6.90676 9.33364L6.90635 11.6888L5.02073 13.5744L2.66591 11.2196L4.55153 9.33405ZM9.17855 6.90659L11.5338 6.90617L13.4194 5.02058L11.0646 2.66579L9.17896 4.55138L9.17855 6.90659Z"
-                fill="white"
-              />
-            </svg>
-            Link Status
-          </td>
+       
           <td>
             <svg
               width="16"
@@ -163,17 +130,15 @@
         </tr>
 
         <ng-container *ngIf="streamData">
-          <tr *ngFor="let v of streamData; index as i">
-            <td>{{ v.streamName }}</td>
-            <td>{{ v.createdDate | date : "short" }}</td>
+          <tr  [routerLink]="['stream-details']" [queryParams]="{'id':v._id,'i':i}" *ngFor="let v of streamData; index as i">
+            <td>Indian Property Expo  {{i+1}}</td>
+         
             <td>{{ v.streamDate | date : "short" }}</td>
 
             <td>
               {{ v.streamStatus }}
             </td>
-            <td>
-              {{ v.linkStatus }}
-            </td>
+            
             <td>
               {{ v.view }}
             </td>

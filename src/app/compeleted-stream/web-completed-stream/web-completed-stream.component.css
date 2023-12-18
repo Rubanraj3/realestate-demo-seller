@@ -102,3 +102,12 @@
     background-color: var(--bgligthBlue);
     height: auto;
   }
+  table tr {
+    border-bottom: solid black 1px;
+    padding: 10px;
+    height: 50px;
+    background-color: var(--bgligthBlue);
+}
+tr td{
+  padding: 8px;
+}

@@ -126,55 +126,6 @@
   
   }
   
-  /* header */
-  /* header{
-    height: 80px;
-    background-color: var(--bgBlue);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px 0 10px;
-  
-  }
-  header>.logo{
-    height: 55px;
-  }
-  header>.logo>img{
-    height: 100%;
-  }
-  header>div{
-    display: flex;
-  align-items: center;
-  }
-  header>div>.login-button{
-    background: white;
-  }
-  header>div>.register-button{
-    background:white;
-    color: black;
-    font-weight: 500;
-    padding: 10px 25px;
-  
-  }
-  header>div>button{
-    padding: 7px 10px;
-    margin: 0 5px;display: flex;
-    align-items: center;
-    height: fit-content;
-    width: fit-content;
-    border: none;
-    border-radius: 2px;
-  
-  }
-  .post-your-property{
-    background: none;
-    border: none;
-    color: white;
-  }
-  .post-your-property>svg{
-    margin-left: 5px;
-  } */
-  
   nav{
     width: 100%;
 
@@ -349,7 +300,15 @@ nav ul li{
   .details-container{
 
   height: auto;
+  position: relative;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+  .menu-bar{
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
   }
   table{
     max-height: fit-content;

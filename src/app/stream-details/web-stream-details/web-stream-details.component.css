@@ -1,0 +1,132 @@
+header{
+    height: 80px;
+    background-color: var(--bgBlue);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px 0 0;
+    background-image: url(../../../assets/images/build.png);
+    background-size: cover;
+  }
+  header>.logo{
+  
+    height: 100%;
+    background-color: rgba(36, 45, 64, 0.336);
+    width: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  header>.logo>img{
+    height: 40px;
+  }
+  header>div{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    justify-content: space-evenly;
+  }
+  header>div>p{
+    color: white;
+    position: relative;
+  }
+  header>div>p>a{
+    color: white;
+    text-decoration: none;
+  }
+  header>div>.login-button{
+    background: white;
+  }
+  header>div>.register-button{
+    background:var(--bgligthBlue);
+  
+  }
+  .svg{
+    display: none;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+
+  }
+  .active + .svg{
+    display:inline;
+  }
+  header>div>button{
+
+    padding: 7px 10px;
+    margin: 0 5px;display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    border-radius: 2px;
+  
+  }
+  .containerr {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 15%;
+    background-color: var( --bgligthBlue);
+    margin: 10px;
+  
+  }
+  
+  .main {
+    margin: auto !important;
+    width: 80%;
+    background-color: var( --bgligthBlue);
+    margin: 10px 0px;
+    padding: 10px 0;
+  
+  }
+
+  table tr td{
+    max-width: fit-content !important;
+   }
+   .tb-heading{
+    height: 60px;
+       background-color: rgba(222, 228, 240, 1) !important;
+   }
+   .tb-heading td{
+    padding: 11px;
+       color: var(--bgBlue);
+   }
+   .tb-heading path{
+       stroke: var(--bgBlue);
+   }
+   .table-back{
+    min-height: 310px;
+    background-color: var(--bgligthBlue);
+    height: auto;
+  }
+  table tr {
+    border-bottom: solid black 1px;
+    padding: 10px;
+    height: 50px;
+    background-color: var(--bgligthBlue);
+}
+tr td{
+  padding: 8px;
+}
+.content-header{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--bgBlue);
+    padding-right: 13px;
+    color: white;
+}
+.content-header span{
+    margin: 0 20px;
+}
+.content-header h4{
+    margin-bottom: 0;
+}
+.table-back{
+  min-height: 310px;
+  background-color: var(--bgligthBlue);
+  height: auto;
+}

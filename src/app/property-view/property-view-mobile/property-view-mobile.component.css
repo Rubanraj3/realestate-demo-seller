@@ -31,7 +31,8 @@
   .details-container{
 
   
-  height: 600px;
+    height: auto;
+    padding-bottom: 100px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
   table{
@@ -143,6 +144,28 @@
     align-items: center;
     justify-content: center;
   }
+  .menu-bar{
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    bottom: 0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  .menu-bar div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+  }
+  .menu-bar h6{
+    font-size: 14px;
+    color: rgba(57, 72, 103, 1);
+  }
+
   @-webkit-keyframes slide-in-bottom {
     0% {
       -webkit-transform: translateY(100px);
