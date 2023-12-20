@@ -493,6 +493,9 @@ nav ul li{
     align-items: center;
     justify-content: center;
   }
+  p{
+    word-break: break-all;
+  }
   @-webkit-keyframes slide-in-bottom {
     0% {
       -webkit-transform: translateY(100px);

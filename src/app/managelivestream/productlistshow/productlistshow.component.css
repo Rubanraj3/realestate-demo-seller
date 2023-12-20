@@ -45,7 +45,11 @@
     overflow: auto;
     background: #F5F8FB;
 }
-
+h6{
+    
+        word-break: break-all;
+      
+}
 
 .view-conent {
     height: auto;

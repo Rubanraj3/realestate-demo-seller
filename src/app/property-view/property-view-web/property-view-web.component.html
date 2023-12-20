@@ -101,14 +101,14 @@
           <tr>
             <td class="line-1">
               <span>
-                <h5>Stream Name</h5>
-                <p *ngIf="!data.start">Stream Date and Time</p>
+                <h5>Property Live</h5>
+                <p *ngIf="!(data.start || data.status =='Completed')  ">Stream Date and Time</p>
                 <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
               </span>
               <span></span>
               <span></span>
               <span class="bttns">
-                <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer should be Join)</p></span>
+                <span *ngIf="data.status =='Scheduled' "><p style="font-size: 13px;">Scheduled (Min One Buyer should be Join)</p></span>
                 <span *ngIf="data.status =='Ready'&& data.start >now_time">Waiting</span>
                 <span *ngIf="data.status =='Completed'  || data.end < now_time "><p>Completed</p></span>
                 <button

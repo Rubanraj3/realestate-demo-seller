@@ -111,3 +111,11 @@
 tr td{
   padding: 8px;
 }
+.view-stream{
+  color: white;
+  background-color: var(--bgBlue);
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}

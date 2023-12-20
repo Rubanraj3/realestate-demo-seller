@@ -12,6 +12,9 @@
     width: 100%;
     background: black;
 }
+p{
+    word-break: break-all;
+  }
 
 
 .header-view {
