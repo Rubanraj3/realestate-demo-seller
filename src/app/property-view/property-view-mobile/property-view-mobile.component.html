@@ -1,7 +1,10 @@
 <span class="bar"></span>
 <div class="main">
   <div class="top-section">
-    <div class="back" style="cursor: pointer !important;margin: 0;padding: 10px;">
+    <div
+      class="back"
+      style="cursor: pointer !important; margin: 0; padding: 10px"
+    >
       <!-- <svg
         width="15"
         height="25"
@@ -15,21 +18,37 @@
           fill-opacity="0.6"
         />
       </svg> -->
-      <p style="margin: 0;padding: 10px;">{{ data.category }} {{ data.category =='Commercial'? 'Property': 'House'}} For {{ data.postType }} in
-        {{ data.location }}</p>
+      <p style="margin: 0; padding: 10px">
+        {{ data.category }}
+        {{ data.category == "Commercial" ? "Property" : "House" }} For
+        {{ data.postType }} in {{ data.location }}
+      </p>
       <!-- <p>
           {{ data.BHKType }} House For {{ data.Type }} in,
           {{ data.formatedAddress }}
         </p> -->
-      <ng-container *ngIf="data !=null">
-        <div class="share"
-          *ngIf="data.status =='Ready' && data.end >now_time || data.status =='On-Going' && data.end >now_time  || data.status =='Scheduled' && data.end >now_time ">
+      <ng-container *ngIf="data != null">
+        <div
+          class="share"
+          *ngIf="
+            (data.status == 'Ready' && data.end > now_time) ||
+            (data.status == 'On-Going' && data.end > now_time) ||
+            (data.status == 'Scheduled' && data.end > now_time)
+          "
+        >
           <a (click)="share()">
-            <svg width="44" height="30" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="44"
+              height="30"
+              viewBox="0 0 44 41"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <rect width="44" height="41" rx="5" fill="white" />
               <path
                 d="M21.7073 24.2059H19.3659C17.4454 24.2051 15.5612 24.7582 13.9171 25.8055C12.273 26.8527 10.9314 28.3542 10.0375 30.1476C10.0123 29.8148 9.99984 29.481 10 29.1471C10 22.3245 15.2414 16.7941 21.7073 16.7941V10L34 20.5L21.7073 31V24.2059ZM19.3659 21.7353H24.0488V25.8216L30.2782 20.5L24.0488 15.1784V19.2647H21.7073C20.3613 19.2631 19.0308 19.5684 17.8069 20.1596C16.583 20.7508 15.4946 21.614 14.6162 22.6902C16.128 22.058 17.7397 21.734 19.3659 21.7353Z"
-                fill="#394867" />
+                fill="#394867"
+              />
             </svg>
           </a>
         </div>
@@ -39,20 +58,38 @@
   <div class="details-box">
     <div class="details-container">
       <div class="slides">
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div
+          id="carouselExampleAutoplaying"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
           <div class="carousel-inner">
-            <div class="carousel-item" *ngFor="let v of data.imageArr;index as i " style="
-                      background-image: url('../../../assets/images/Frame\ 2072.png');" [ngClass]="i ==0?'active':''">
-              <img [src]="v" class="d-block " alt="...">
+            <div
+              class="carousel-item"
+              *ngFor="let v of data.imageArr; index as i"
+              style="
+                background-image: url('../../../assets/images/Frame\ 2072.png');
+              "
+              [ngClass]="i == 0 ? 'active' : ''"
+            >
+              <img [src]="v" class="d-block" alt="..." />
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="prev">
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-            data-bs-slide="next">
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -62,62 +99,101 @@
         <tr>
           <td class="line-1">
             <span>
-              <h5>Stream Name</h5>
-              <p *ngIf="!data.start">Stream Date and Time</p>
-                <p *ngIf="data.start">{{ data.start | date:'d/M/yy, h:mm a'}}</p>
+              <h5>Property Live</h5>
+              <p *ngIf="data.status == 'Pending'">Stream Date and Time</p>
+              <p *ngIf="data.status != 'Pending'">
+                {{ data.start | date : "d/M/yy, h:mm a" }}
+              </p>
             </span>
-            <span class="bttns" style="position: relative;">
+            <span class="bttns" style="position: relative">
               <button *ngIf="false">Live</button>
-              <span *ngIf="data.status =='Scheduled' "><p>Scheduled (Min One Buyer should be Join)</p></span>
-              <span *ngIf="data.status =='Ready'&& data.start >now_time"><p>Waiting</p></span>
-              <span *ngIf="data.status =='Completed'  || data.end < now_time "><p>Completed</p></span>
+              <span *ngIf="data.status == 'Scheduled'"
+                ><p>Scheduled (Min One Buyer should be Join)</p></span
+              >
+              <span *ngIf="data.status == 'Ready' && data.start > now_time"
+                ><p>Waiting</p></span
+              >
+              <span *ngIf="data.status == 'Completed' || data.end < now_time&& data.status =='On-Going'"
+                ><p>Completed</p></span
+              >
               <button
-              *ngIf="data.status =='Ready' && data.end > now_time && data.start < now_time || data.status =='On-Going' && data.end >now_time && data.start < now_time"
-              (click)="go_live()">{{data.status=='On-Going'?'Resume':'Go Live'}}</button>
-              <div >
-                <button (click)="popup = !popup" *ngIf="data.status == 'Pending'" for="select1" class="select-btn">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                *ngIf="
+                  (data.status == 'Ready' &&
+                    data.end > now_time &&
+                    data.start < now_time) ||
+                  (data.status == 'On-Going' &&
+                    data.end > now_time &&
+                    data.start < now_time)
+                "
+                (click)="go_live()"
+              >
+                {{ data.status == "On-Going" ? "Resume" : "Go Live" }}
+              </button>
+              <div>
+                <button
+                  (click)="popup = !popup"
+                  *ngIf="data.status == 'Pending'"
+                  for="select1"
+                  class="select-btn"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M15 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H1C0.734784 20 0.48043 19.8946 0.292893 19.7071C0.105357 19.5196 0 19.2652 0 19V3C0 2.73478 0.105357 2.48043 0.292893 2.29289C0.48043 2.10536 0.734784 2 1 2H5V0H7V2H13V0H15V2ZM13 4H7V6H5V4H2V8H18V4H15V6H13V4ZM18 10H2V18H18V10ZM4 13H6V15H4V13ZM8 13H16V15H8V13Z"
-                      fill="white" />
+                      fill="white"
+                    />
                   </svg>
                   Select
                 </button>
               </div>
               <span *ngIf="popup && data.status == 'Pending'" class="small-pop">
-                <input [min]="today | date:'yyyy-MM-ddTHH:mm'" style="width: 100%" (change)="showDate(date,false)"  #date type="datetime-local" />
-                <p   *ngIf="timeErr" style="color: red;
-                text-align: center;margin-bottom: 0;">Invalid Time</p>
-                  <span class="pop-sub">
-                    <button (click)="showDate(date,true)">Submit</button>
-                  </span>
+                <input
+                  [min]="today | date : 'yyyy-MM-ddTHH:mm'"
+                  style="width: 100%"
+                  (change)="showDate(date, false)"
+                  #date
+                  type="datetime-local"
+                />
+                <p
+                  *ngIf="timeErr"
+                  style="color: red; text-align: center; margin-bottom: 0"
+                >
+                  Invalid Time
+                </p>
+                <span class="pop-sub">
+                  <button (click)="showDate(date, true)">Submit</button>
+                </span>
               </span>
-
             </span>
 
             <!-- && data.status == 'Pending' -->
           </td>
         </tr>
-        <tr *ngIf="data.postType=='Sale'">
+        <tr *ngIf="data.postType == 'Sale'">
           <td>
-            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
-            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+            <p>{{ data.postType == "Sale" ? "Price" : "Rent" }} Expectation</p>
+            <h5>{{ data.priceExp | currency : "INR" : true : "0.0-0" }}</h5>
           </td>
         </tr>
-        <tr *ngIf="data.postType!=='Sale'"  class="line-3">
+        <tr *ngIf="data.postType !== 'Sale'" class="line-3">
           <td>
-            <p>{{data.postType=='Sale'? 'Price' :'Rent'}} Expectation</p>
-            <h5>{{data.priceExp| currency:'INR':true:'0.0-0'}}</h5>
+            <p>{{ data.postType == "Sale" ? "Price" : "Rent" }} Expectation</p>
+            <h5>{{ data.priceExp | currency : "INR" : true : "0.0-0" }}</h5>
           </td>
           <td>
             <p>Tenant Type</p>
-            <h5>{{data.tenantType ? data.tenantType : '--'  }}</h5>
+            <h5>{{ data.tenantType ? data.tenantType : "--" }}</h5>
           </td>
         </tr>
         <tr>
           <td colspan="3">
             <p>Location</p>
-            <h5>{{data.location}}</h5>
+            <h5>{{ data.location }}</h5>
           </td>
         </tr>
         <tr class="line-3">
@@ -130,41 +206,72 @@
             <h5>{{ data.bhkBuilding }}</h5>
           </td>
         </tr>
-        <tr class="line-3" >
+        <tr class="line-3">
           <td>
             <p>Furnishing status</p>
             <h5>{{ data.furnitionStatus }}</h5>
           </td>
           <td>
             <p>Built up area</p>
-            <h5>{{data.sqft}}.sqft</h5>
+            <h5>{{ data.sqft }}.sqft</h5>
           </td>
         </tr>
         <tr>
-          <td colspan="3" style="align-items: baseline;
-          padding: 10px;height: auto;">
+          <td
+            colspan="3"
+            style="align-items: baseline; padding: 10px; height: auto"
+          >
             <h5>Description</h5>
             <p>{{ data.Description }}</p>
           </td>
         </tr>
       </table>
-      
     </div>
   </div>
   <div class="menu-bar">
-          <div >
-            <span><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.8462 6.44444L19.6872 1.54963C19.7948 1.44099 19.9318 1.36703 20.0809 1.33707C20.23 1.30712 20.3846 1.32252 20.5251 1.38133C20.6655 1.44014 20.7856 1.53973 20.8701 1.66751C20.9547 1.79529 20.9999 1.94553 21 2.09926V13.9007C20.9999 14.0545 20.9547 14.2047 20.8701 14.3325C20.7856 14.4603 20.6655 14.5599 20.5251 14.6187C20.3846 14.6775 20.23 14.6929 20.0809 14.6629C19.9318 14.633 19.7948 14.559 19.6872 14.4504L14.8462 9.55556M3.30769 15H12.5385C13.1505 15 13.7375 14.7542 14.1702 14.3166C14.603 13.879 14.8462 13.2855 14.8462 12.6667V3.33333C14.8462 2.71449 14.603 2.121 14.1702 1.68342C13.7375 1.24583 13.1505 1 12.5385 1H3.30769C2.69565 1 2.10868 1.24583 1.67591 1.68342C1.24313 2.121 1 2.71449 1 3.33333V12.6667C1 13.2855 1.24313 13.879 1.67591 14.3166C2.10868 14.7542 2.69565 15 3.30769 15Z" stroke="#394867" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-              </span>
-              <h6>Stream</h6>
-          </div>
-          <div routerLink="/completed-stream">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M13.91 9.67163C13.9686 9.70408 14.0174 9.75161 14.0513 9.80929C14.0853 9.86696 14.1032 9.93269 14.1032 9.99963C14.1032 10.0666 14.0853 10.1323 14.0513 10.19C14.0174 10.2477 13.9686 10.2952 13.91 10.3276L8.307 13.4406C8.24991 13.4723 8.18552 13.4886 8.12023 13.4877C8.05493 13.4869 7.99099 13.469 7.93472 13.4359C7.87845 13.4028 7.8318 13.3555 7.79941 13.2988C7.76701 13.2421 7.74998 13.1779 7.75 13.1126V6.88663C7.75 6.60063 8.057 6.42063 8.307 6.55963L13.91 9.67163Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <h6 style="color: gray;">Completed Streams</h6>
-          </div>
+    <div>
+      <span
+        ><svg
+          width="22"
+          height="16"
+          viewBox="0 0 22 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M14.8462 6.44444L19.6872 1.54963C19.7948 1.44099 19.9318 1.36703 20.0809 1.33707C20.23 1.30712 20.3846 1.32252 20.5251 1.38133C20.6655 1.44014 20.7856 1.53973 20.8701 1.66751C20.9547 1.79529 20.9999 1.94553 21 2.09926V13.9007C20.9999 14.0545 20.9547 14.2047 20.8701 14.3325C20.7856 14.4603 20.6655 14.5599 20.5251 14.6187C20.3846 14.6775 20.23 14.6929 20.0809 14.6629C19.9318 14.633 19.7948 14.559 19.6872 14.4504L14.8462 9.55556M3.30769 15H12.5385C13.1505 15 13.7375 14.7542 14.1702 14.3166C14.603 13.879 14.8462 13.2855 14.8462 12.6667V3.33333C14.8462 2.71449 14.603 2.121 14.1702 1.68342C13.7375 1.24583 13.1505 1 12.5385 1H3.30769C2.69565 1 2.10868 1.24583 1.67591 1.68342C1.24313 2.121 1 2.71449 1 3.33333V12.6667C1 13.2855 1.24313 13.879 1.67591 14.3166C2.10868 14.7542 2.69565 15 3.30769 15Z"
+            stroke="#394867"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+      <h6>Stream</h6>
+    </div>
+    <div routerLink="/completed-stream">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z"
+          stroke="#808080"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M13.91 9.67163C13.9686 9.70408 14.0174 9.75161 14.0513 9.80929C14.0853 9.86696 14.1032 9.93269 14.1032 9.99963C14.1032 10.0666 14.0853 10.1323 14.0513 10.19C14.0174 10.2477 13.9686 10.2952 13.91 10.3276L8.307 13.4406C8.24991 13.4723 8.18552 13.4886 8.12023 13.4877C8.05493 13.4869 7.99099 13.469 7.93472 13.4359C7.87845 13.4028 7.8318 13.3555 7.79941 13.2988C7.76701 13.2421 7.74998 13.1779 7.75 13.1126V6.88663C7.75 6.60063 8.057 6.42063 8.307 6.55963L13.91 9.67163Z"
+          stroke="#808080"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <h6 style="color: gray">Completed Streams</h6>
+    </div>
   </div>
 </div>
