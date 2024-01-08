@@ -22,10 +22,13 @@ export class SellerServiceService {
   go_love(data: any) {
     return this.http.post(this.baseAPi + '/v2/demostream/seller/go/live', data)
   }
-  get_cmplt_stream(id:any){
-    return this.http.get(this.baseAPi+"/v2/demostream/getStreamDetails/"+id)
+  get_cmplt_stream(id: any) {
+    return this.http.get(this.baseAPi + "/v2/demostream/getStreamDetails/" + id)
   }
-  get_strea_details(id:any){
-    return this.http.get(this.baseAPi+'/v2/demostream/getViewAndIntrestedUsersByStream/'+id)
+  get_strea_details(id: any) {
+    return this.http.get(this.baseAPi + '/v2/demostream/getViewAndIntrestedUsersByStream/' + id)
+  }
+  get_cloud(id: any) {
+    return this.http.get(this.baseAPi + '/v2/demostream/get/cloud/records?id=' + id)
   }
 }

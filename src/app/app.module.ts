@@ -20,6 +20,10 @@ import { MobileCompletedStreamComponent } from './compeleted-stream/mobile-compl
 import { StreamDetailsComponent } from './stream-details/stream-details.component';
 import { WebStreamDetailsComponent } from './stream-details/web-stream-details/web-stream-details.component';
 import { MobileStreamDetailsComponent } from './stream-details/mobile-stream-details/mobile-stream-details.component';
+import { CompletdStreamVideoComponent } from './completd-stream-video/completd-stream-video.component';
+import { MobileViewComponent } from './completd-stream-video/mobile-view/mobile-view.component';
+import { WebViewComponent } from './completd-stream-video/web-view/web-view.component';
+import { VideoHlsComponent } from './completd-stream-video/video-hls/video-hls.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { MobileStreamDetailsComponent } from './stream-details/mobile-stream-det
     MobileCompletedStreamComponent,
     StreamDetailsComponent,
     WebStreamDetailsComponent,
-    MobileStreamDetailsComponent
+    MobileStreamDetailsComponent,
+    CompletdStreamVideoComponent,
+    MobileViewComponent,
+    WebViewComponent,
+    VideoHlsComponent
   ],
   imports: [
     BrowserModule,

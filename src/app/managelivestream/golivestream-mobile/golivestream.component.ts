@@ -2,7 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, Pipe, PipeTransform, OnDestroy, DoCheck } from '@angular/core';
 import { AgorastreamingService } from '../agorastreaming.service';
 import { HostserviceService } from '../hostservice.service';
-import { retry, Subscription, timer } from 'rxjs';
+import { timer } from 'rxjs';
 import { SocketioService } from '../socketio.service';
 import { ManagelivestreamService } from '../managelivestream.service';
 import { PendingChangesGuard } from '../can-deactivate.guard';
@@ -13,7 +13,7 @@ declare let $: any;
   templateUrl: './golivestream.component.html',
   styleUrls: ['./golivestream.component.css']
 })
-export class GolivestreamComponentMobile implements OnInit, OnDestroy {
+export class GolivestreamComponentMobile implements OnInit, OnDestroy, DoCheck {
   constructor(private dash: DashboardService, private leave: PendingChangesGuard, public route: ActivatedRoute, public api: ManagelivestreamService, public stream: AgorastreamingService, public router: Router, public agora: HostserviceService, public web: SocketioService) { }
 
   id: any;
@@ -28,8 +28,8 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
     this.stream.videostarted.next(null)
     this.stream.videostarted.subscribe((res: any) => {
       console.log(res, 879765789765467)
-      if (res != null) {
-        this.agora.start_recording(this.id).subscribe((start: any) => {
+      if (res != null && this.id != null) {
+        this.api.start_cound_record(this.id).subscribe((start: any) => {
           console.log(start)
         })
       }
@@ -208,22 +208,21 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
         this.router.navigateByUrl("/property")
       }
       this.streampost = res;
-      // this.current_watching_stream = res.token.current_watching_stream;
+      this.current_watching_stream = res.current_watching_stream;
       this.stream.update_agoraID(res.agora.appID);
       this.targetTime = res.end;
       this.streamDetails = res.stream;
       this.tickTock();
-      res = res.agora;
-      // this.web._stream_joins(res.stream.channel).subscribe((res: any) => {
-      //   this.current_watching_stream = res.current_watching_stream;
-      // })
+      this.web._stream_joins(res.stream.channel).subscribe((res: any) => {
+        this.current_watching_stream = res.current_watching_stream;
+      })
       this.tokenValues = res;
       this.start_call_now(this.streampost.stream, this.streampost.stream.channel);
       this.userId = this.streampost.stream.uid;
 
     })
   }
-  count: any = 5;
+  count: any = 100;
 
   media_controls(res: any) {
 
@@ -291,12 +290,26 @@ export class GolivestreamComponentMobile implements OnInit, OnDestroy {
       this.participents = res
     })
   }
+  ngDoCheck(): void {
+    this.stream.active_cam.subscribe((res: any) => {
+      console.log(res)
+      if (this.active_cam != res) {
+        if (res == 'back') {
+          $("#local-player video").css("transform", "scaleX(1)");
+          // setTimeout(() => {
+          //   $("#local-player video").css("transform", "scaleX(1)");
+          // }, 400)
+        }
+      }
+    })
+
+  }
   async start_call_now(res: any, channel: any) {
     this.stream.agoraServerEvents(this.stream.rtc);
     await this.stream.localUser(res.token, res.uid, '', channel, res);
   }
   end_stream() {
-    
+
     var answer = confirm("Are you sure you want to End this Live Streaming")
     if (answer) {
       this.agora.end_stream(this.id).subscribe((res: any) => {

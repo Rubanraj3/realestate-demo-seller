@@ -24,24 +24,7 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
   open_product_view: any;
 
   ngOnInit(): void {
-    this.stream.videostarted.subscribe((res: any) => {
-      if (res != null) {
-        this.api.start_cound_record(this.id).subscribe((res: any) => {
-          console.log(res)
-        })
-        setTimeout(() => {
-          let video = $("#local-player video");
-          // video.css("transform", "rotateY(0deg)")
-          // video.css("display", "none")
-          console.log(video, 98768907686)
-        }, 100)
 
-        // let doc: any = document.get("agora_video_player");
-        // console.log(doc,98765789076547)
-        // doc.style.display = 'none'
-      }
-
-    })
     this.web.productView.subscribe((res: any) => {
       console.log(res, 2156789076)
       this.open_product_view = res;
@@ -64,6 +47,18 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
     console.log(this.innerWidth)
     this.route.queryParams.subscribe((params: any) => {
       this.id = params.id;
+      this.stream.videostarted.subscribe((res: any) => {
+        if (res != null) {
+          this.api.start_cound_record(this.id).subscribe((res: any) => {
+            console.log(res)
+          })
+          setTimeout(() => {
+            let video = $("#local-player video");
+            console.log(video, 98768907686)
+          }, 100)
+        }
+
+      })
       this.get_token(this.id);
 
     })
@@ -220,15 +215,15 @@ export class GolivestreamComponent implements OnInit, OnDestroy, DoCheck {
         this.router.navigateByUrl("/property")
       }
       this.streampost = res;
-      // this.current_watching_stream = res.token.current_watching_stream;
+      this.current_watching_stream = res.current_watching_stream;
       this.stream.update_agoraID(res.agora.appID);
       this.targetTime = res.end;
       this.streamDetails = res.stream;
       this.tickTock();
+      this.web._stream_joins(res.stream.channel).subscribe((res: any) => {
+        this.current_watching_stream = res.current_watching_stream;
+      })
       res = res.agora;
-      // this.web._stream_joins(res.stream.channel).subscribe((res: any) => {
-      //   this.current_watching_stream = res.current_watching_stream;
-      // })
       this.tokenValues = res;
       this.start_call_now(this.streampost.stream, this.streampost.stream.channel);
       this.userId = this.streampost.stream.uid;

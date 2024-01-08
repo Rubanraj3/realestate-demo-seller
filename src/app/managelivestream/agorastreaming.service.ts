@@ -159,8 +159,14 @@ export class AgorastreamingService {
       index = 0;
     }
     this.localVideoTrack.setDevice(cams[index].deviceId);
+
+    let type = cams[index].label.includes('back') == true ? 'back' : 'front';
+    this.acitve_camara = type;
+    this.active_cam.next(this.acitve_camara);
     return cams[index].deviceId;
   }
+  acitve_camara: any = 'front'
+  active_cam: any = new BehaviorSubject<any>('front');
 
 
   async togglePlay(type: any) {

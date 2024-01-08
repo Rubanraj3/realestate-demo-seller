@@ -52,7 +52,7 @@
           <p  *ngIf="submitted && form.get('otp')?.invalid">
             Otp is required !
           </p>
-          <p *ngIf="err">Invalid Otp !</p>
+          <p *ngIf="err&& form.get('otp')?.valid">Invalid Otp !</p>
         </div>
         <button (click)="submit()" class="bttn">Submit</button>
       </div>
